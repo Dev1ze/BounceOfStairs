@@ -18,7 +18,7 @@ public class BallMoving : MonoBehaviour
 
     void Update()
     {
-        Jump();
+        Jumping();
     }
     private void OnCollisionStay(Collision collision)
     {
@@ -32,7 +32,7 @@ public class BallMoving : MonoBehaviour
 
     void Jumping()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGround) //Input.TouchCount > 0 גלוסעמ Space
+        if (Input.GetKeyDown(KeyCode.Space) && isGround) //Input.TouchCount > 0 = GetKeyDown(KeyCode.Space)
         {
             _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
             _rigidbody.AddForce(Vector3.forward * _speedForce, ForceMode.Force);
