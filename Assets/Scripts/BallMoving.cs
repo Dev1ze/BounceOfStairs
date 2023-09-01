@@ -55,12 +55,13 @@ public class BallMoving : MonoBehaviour
         {
 
             _rigidbody.velocity = new Vector3(-_jumpForce, 0, 0);
+            _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
             _rigidbody.AddForce(Vector3.left * _jumpForce , ForceMode.Impulse);
         }
         if (Input.GetKeyDown(KeyCode.D) && isGround)
         {
-            _rigidbody.drag = 4;
             _rigidbody.velocity = new Vector3(_jumpForce, 0, 0);
+            _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
             _rigidbody.AddForce(Vector3.right * _jumpForce, ForceMode.Impulse);
         }
     }
