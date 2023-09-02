@@ -8,6 +8,7 @@ public class BallMoving : MonoBehaviour
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _speedForce;
     [SerializeField] private bool isGround;
+    private int _countSwipe;
 
     private Rigidbody _rigidbody;
     void Start()
@@ -26,7 +27,6 @@ public class BallMoving : MonoBehaviour
         if(collision.gameObject.tag == "Ground")
         {
             isGround = true;
-            _rigidbody.drag = 4;
         }
 
     }
@@ -35,9 +35,7 @@ public class BallMoving : MonoBehaviour
         if (collision.gameObject.tag == "Ground") 
         {
             isGround = false;
-            _rigidbody.drag = 0;
         }
-
     }
 
     void Jumping()
@@ -51,15 +49,16 @@ public class BallMoving : MonoBehaviour
     }
     void Moving()
     {
-        if (Input.GetKeyDown(KeyCode.A) && isGround)
+        if (Input.GetKeyDown(KeyCode.A) && isGround && _countSwipe < 2)
         {
-
+            _countSwipe++;
             _rigidbody.velocity = new Vector3(-_jumpForce, 0, 0);
             _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
             _rigidbody.AddForce(Vector3.left * _jumpForce , ForceMode.Impulse);
         }
-        if (Input.GetKeyDown(KeyCode.D) && isGround)
+        if (Input.GetKeyDown(KeyCode.D) && isGround && _countSwipe > -2)
         {
+            _countSwipe--;
             _rigidbody.velocity = new Vector3(_jumpForce, 0, 0);
             _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
             _rigidbody.AddForce(Vector3.right * _jumpForce, ForceMode.Impulse);
