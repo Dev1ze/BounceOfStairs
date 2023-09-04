@@ -55,19 +55,19 @@ public class BallMoving : MonoBehaviour
     }
     void RightOrLeftJump()
     {
-        if (Input.GetKeyDown(KeyCode.A) && isGround && _countSwipe < 2)
+        if (Input.GetKeyDown(KeyCode.A) && isGround && _countSwipe < 7)
         {
             _countSwipe++;
-            _rigidbody.velocity = new Vector3(-_jumpForce, 0, 0);
-            _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
-            _rigidbody.AddForce(Vector3.left * _jumpForce, ForceMode.Impulse);
+            _rigidbody.velocity = new Vector3(-5, 0, 0);
+            _rigidbody.AddForce(Vector3.up * 5, ForceMode.Impulse);
+            _rigidbody.AddForce(Vector3.left * 3, ForceMode.Impulse);
         }
-        if (Input.GetKeyDown(KeyCode.D) && isGround && _countSwipe > -2)
+        if (Input.GetKeyDown(KeyCode.D) && isGround && _countSwipe > -7)
         {
             _countSwipe--;
-            _rigidbody.velocity = new Vector3(_jumpForce, 0, 0);
-            _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
-            _rigidbody.AddForce(Vector3.right * _jumpForce, ForceMode.Impulse);
+            _rigidbody.velocity = new Vector3(5, 0, 0);
+            _rigidbody.AddForce(Vector3.up * 5, ForceMode.Impulse);
+            _rigidbody.AddForce(Vector3.right * 3, ForceMode.Impulse);
         }
 
         //Touch touch = Input.GetTouch(0);

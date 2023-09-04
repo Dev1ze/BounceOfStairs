@@ -12,8 +12,8 @@ public class ChankPlacer : MonoBehaviour
     void Start()
     {
         spawnedChanks.Add(FirstChank);
-        GameObject newEnemy = Instantiate(Enemy);
-        newEnemy.transform.position = spawnedChanks[spawnedChanks.Count - 1].GetComponent<Chank>().Spawn.position;
+        //GameObject newEnemy = Instantiate(Enemy);
+        //newEnemy.transform.position = spawnedChanks[spawnedChanks.Count - 1].GetComponent<Chank>().Spawn.position;
 
     }
 
