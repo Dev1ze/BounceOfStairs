@@ -17,11 +17,14 @@ public class BallMoving : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount > 0)
-        {
-            ForwardJump();
-            RightOrLeftJump();
-        }
+        //if (Input.touchCount > 0)
+        //{
+        //    ForwardJump();
+        //    RightOrLeftJump();
+        //}
+
+        ForwardJump();
+        RightOrLeftJump();
     }
     private void OnCollisionStay(Collision collision)
     {
@@ -34,37 +37,57 @@ public class BallMoving : MonoBehaviour
 
     void ForwardJump()
     {
-
-        Touch touch = Input.GetTouch(0);
-        Vector3 delta = Input.GetTouch(0).deltaPosition;
-        if (touch.phase == TouchPhase.Ended && delta.x == 0 && isGround)
+        if (Input.GetKeyDown(KeyCode.Space) && isGround)
         {
             _rigidbody.velocity = new Vector3(0, _jumpForce, 0);
             _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
             _rigidbody.AddForce(Vector3.forward * _speedForce, ForceMode.Force);
         }
+
+        //Touch touch = Input.GetTouch(0);
+        //Vector3 delta = Input.GetTouch(0).deltaPosition;
+        //if (touch.phase == TouchPhase.Ended && delta.x == 0 && isGround)
+        //{
+        //    _rigidbody.velocity = new Vector3(0, _jumpForce, 0);
+        //    _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+        //    _rigidbody.AddForce(Vector3.forward * _speedForce, ForceMode.Force);
+        //}
     }
     void RightOrLeftJump()
     {
-
-        Touch touch = Input.GetTouch(0);
-        Vector3 delta = Input.GetTouch(0).deltaPosition;
-        if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
+        if (Input.GetKeyDown(KeyCode.A) && isGround && _countSwipe < 2)
         {
-            if (delta.x < 0 && touch.phase == TouchPhase.Moved && isGround && _countSwipe < 2)
-            {
-                _countSwipe++;
-                _rigidbody.velocity = new Vector3(-_jumpForce, 0, 0);
-                _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
-                _rigidbody.AddForce(Vector3.left * _jumpForce, ForceMode.Impulse);
-            }
-            if (delta.x > 0 && touch.phase == TouchPhase.Moved && isGround && _countSwipe > -2)
-            {
-                _countSwipe--;
-                _rigidbody.velocity = new Vector3(_jumpForce, 0, 0);
-                _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
-                _rigidbody.AddForce(Vector3.right * _jumpForce, ForceMode.Impulse);
-            }
+            _countSwipe++;
+            _rigidbody.velocity = new Vector3(-_jumpForce, 0, 0);
+            _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+            _rigidbody.AddForce(Vector3.left * _jumpForce, ForceMode.Impulse);
         }
+        if (Input.GetKeyDown(KeyCode.D) && isGround && _countSwipe > -2)
+        {
+            _countSwipe--;
+            _rigidbody.velocity = new Vector3(_jumpForce, 0, 0);
+            _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+            _rigidbody.AddForce(Vector3.right * _jumpForce, ForceMode.Impulse);
+        }
+
+        //Touch touch = Input.GetTouch(0);
+        //Vector3 delta = Input.GetTouch(0).deltaPosition;
+        //if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
+        //{
+        //    if (delta.x < 0 && touch.phase == TouchPhase.Moved && isGround && _countSwipe < 2)
+        //    {
+        //        _countSwipe++;
+        //        _rigidbody.velocity = new Vector3(-_jumpForce, 0, 0);
+        //        _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+        //        _rigidbody.AddForce(Vector3.left * _jumpForce, ForceMode.Impulse);
+        //    }
+        //    if (delta.x > 0 && touch.phase == TouchPhase.Moved && isGround && _countSwipe > -2)
+        //    {
+        //        _countSwipe--;
+        //        _rigidbody.velocity = new Vector3(_jumpForce, 0, 0);
+        //        _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+        //        _rigidbody.AddForce(Vector3.right * _jumpForce, ForceMode.Impulse);
+        //    }
+        //}
     }
 }
