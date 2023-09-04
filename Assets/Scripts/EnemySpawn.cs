@@ -4,23 +4,28 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
-    [SerializeField] GameObject enemy;
-    [SerializeField] List<GameObject> Spawns;
+    //[SerializeField] GameObject Enemy;
+    //[SerializeField] List<GameObject> Spawns = new List<GameObject>();
     int countEnemy;
     void Start()
     {
-        Debug.Log("Enemy: " + enemy.transform.localPosition);
+        
     }
 
     void Awake()
     {
-        while (countEnemy < 2)
-        {
-            int randomSpawnsIndex = Random.Range(0, Spawns.Count);
-            Vector3 randomPosition = Spawns[randomSpawnsIndex].transform.position;
-            Instantiate(enemy, randomPosition, Quaternion.identity);
-            Spawns.RemoveAt(randomSpawnsIndex);
-            countEnemy++;
-        }
+        Spawning();
     }
+    public void Spawning()
+    {
+        //int randomSpawnsIndex = Random.Range(0, Spawns.Count);
+        //Vector3 randomPosition = Spawns[randomSpawnsIndex].transform.position;
+        //Instantiate(Enemy, randomPosition, Quaternion.identity);
+        //countEnemy++;
+        //Spawns.RemoveAt(randomSpawnsIndex);
+        //Debug.Log(randomPosition);
+    }
+
+    
 }
+
