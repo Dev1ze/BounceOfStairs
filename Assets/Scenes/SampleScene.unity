@@ -3509,6 +3509,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be47374786dedf24a978cf5cec47f1c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Explosion: {fileID: 598306745699687922, guid: 4d4b62daf494a7744a9f18a4517921d8,
+    type: 3}
 --- !u!1 &705428130 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7287359573790716030, guid: e83cd37d0c76e754688acd5a7a2970e3,
@@ -4025,7 +4027,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.17624794, y: -0.36610293, z: 0.069123305, w: 0.9111132}
-  m_LocalPosition: {x: 16.67, y: 18, z: -10}
+  m_LocalPosition: {x: 17, y: 18, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5563,7 +5565,10 @@ MonoBehaviour:
   FirstChank: {fileID: 705428130}
   ChankPrefab: {fileID: 7287359573790716030, guid: e83cd37d0c76e754688acd5a7a2970e3,
     type: 3}
-  Enemy: {fileID: 3092264119270064680, guid: 4ab6ce6b52a5be84e9827b4eaf84a38f, type: 3}
+  Enemy:
+  - {fileID: 3092264119270064680, guid: d81270e77b688444199450e97712d00b, type: 3}
+  - {fileID: 3092264119270064680, guid: f82771e4e9441bd4a9cad144a49cbdd3, type: 3}
+  - {fileID: 4366439482284175884, guid: 5ace00ca582bdde44af46e1d9283192d, type: 3}
 --- !u!4 &1994719700
 Transform:
   m_ObjectHideFlags: 0
