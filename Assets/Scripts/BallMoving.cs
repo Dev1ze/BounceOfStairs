@@ -7,6 +7,7 @@ public class BallMoving : MonoBehaviour
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _speedForce;
     [SerializeField] private bool isGround;
+    public Transform PlayerTarget;
     Score scoreText;
     private int _countSwipe;
 
@@ -27,6 +28,7 @@ public class BallMoving : MonoBehaviour
 
         ForwardJump();
         RightOrLeftJump();
+        PlayerTarget.transform.position = new Vector3(0, transform.position.y,transform.position.z);
     }
     private void OnCollisionStay(Collision collision)
     {
