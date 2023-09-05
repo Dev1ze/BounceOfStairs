@@ -10,7 +10,7 @@ public class ChankPlacer : MonoBehaviour
     public List<GameObject> SpawnedEnemy;
     [SerializeField] public GameObject FirstChank;
     [SerializeField] public GameObject ChankPrefab;
-    [SerializeField] public GameObject Enemy;
+    [SerializeField] public GameObject[] Enemy;
     int i;
     void Start()
     {
@@ -28,7 +28,7 @@ public class ChankPlacer : MonoBehaviour
                 DeleteChank();
                 SpawnEnemy();
             }
-        }
+        }   
     }
     void SpawnEnemy() 
     {
@@ -36,7 +36,7 @@ public class ChankPlacer : MonoBehaviour
         {
             Component[] array = SpawnedChanks[SpawnedChanks.Count - 1].GetComponent<Chank>().MainSpawn[i].GetComponentsInChildren(typeof(Transform));
             Component[] newArray = RemoveFirstItemArray(ref array);
-            GameObject newEnemy = Instantiate(Enemy);
+            GameObject newEnemy = Instantiate(Enemy[Random.Range(0, Enemy.Length)]);
             SpawnedEnemy.Add(newEnemy);
             newEnemy.transform.position = newArray[Random.Range(0, newArray.Length - 1)].GetComponent<Transform>().position;
             i++;
