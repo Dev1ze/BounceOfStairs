@@ -7,12 +7,14 @@ public class BallMoving : MonoBehaviour
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _speedForce;
     [SerializeField] private bool isGround;
+    Score scoreText;
     private int _countSwipe;
 
     private Rigidbody _rigidbody;
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        scoreText = FindObjectOfType<Score>();
     }
 
     void Update()
@@ -42,6 +44,7 @@ public class BallMoving : MonoBehaviour
             _rigidbody.velocity = new Vector3(0, _jumpForce, 0);
             _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
             _rigidbody.AddForce(Vector3.forward * _speedForce, ForceMode.Force);
+            scoreText.IncrementScore();
         }
 
         //Touch touch = Input.GetTouch(0);
