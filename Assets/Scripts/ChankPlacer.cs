@@ -20,11 +20,14 @@ public class ChankPlacer : MonoBehaviour
 
     void Update()
     {
-        if (Player.position.z > SpawnedChanks[SpawnedChanks.Count - 1].GetComponent<Chank>().Began.transform.position.z)
+        if (Player != null) 
         {
-            SpawnChank();
-            DeleteChank();
-            SpawnEnemy();
+            if (Player.position.z > SpawnedChanks[SpawnedChanks.Count - 1].GetComponent<Chank>().Began.transform.position.z)
+            {
+                SpawnChank();
+                DeleteChank();
+                SpawnEnemy();
+            }
         }
     }
     void SpawnEnemy() 
