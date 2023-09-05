@@ -55,14 +55,14 @@ public class BallMoving : MonoBehaviour
     }
     void RightOrLeftJump()
     {
-        if (Input.GetKeyDown(KeyCode.A) && isGround && _countSwipe < 7)
+        if (Input.GetKeyDown(KeyCode.A) && isGround && _countSwipe < 3)
         {
             _countSwipe++;
             _rigidbody.velocity = new Vector3(-5, 0, 0);
             _rigidbody.AddForce(Vector3.up * 5, ForceMode.Impulse);
             _rigidbody.AddForce(Vector3.left * 3, ForceMode.Impulse);
         }
-        if (Input.GetKeyDown(KeyCode.D) && isGround && _countSwipe > -7)
+        if (Input.GetKeyDown(KeyCode.D) && isGround && _countSwipe > -3)
         {
             _countSwipe--;
             _rigidbody.velocity = new Vector3(5, 0, 0);

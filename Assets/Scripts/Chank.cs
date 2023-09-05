@@ -6,11 +6,11 @@ public class Chank : MonoBehaviour
 {
     [SerializeField] public Transform Began;
     [SerializeField] public Transform End;
-    [SerializeField] public Transform Spawn;
+    [SerializeField] public List<Transform> _Spawn = new List<Transform>();
 
     void Start()
     {
-        
+
     }
     void Update()
     {
