@@ -23,12 +23,6 @@ public class BallMoving : MonoBehaviour
 
     void Update()
     {
-        //if (Input.touchCount > 0)
-        //{
-        //    ForwardJump();
-        //    RightOrLeftJump();
-        //}
-
         ForwardJump();
         RightOrLeftJump();
         PlayerTarget.transform.position = new Vector3(0, transform.position.y,transform.position.z);
@@ -40,78 +34,60 @@ public class BallMoving : MonoBehaviour
 
     void ForwardJump()
     {
-        if (Input.GetKey(KeyCode.Space) && isGround)
-        {
-            _rigidbody.velocity = new Vector3(0, _jumpForce, 0);
-            _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
-            _rigidbody.AddForce(Vector3.forward * _speedForce, ForceMode.Force);
-            isGround = false;
-            scoreText.IncrementScore();
-
-        }
-
-
-        //if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Stationary && isGround)
+        //if (Input.GetKey(KeyCode.Space) && isGround)
         //{
         //    _rigidbody.velocity = new Vector3(0, _jumpForce, 0);
         //    _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
         //    _rigidbody.AddForce(Vector3.forward * _speedForce, ForceMode.Force);
         //    isGround = false;
         //    scoreText.IncrementScore();
+
         //}
+
+
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Stationary && isGround)
+        {
+            _rigidbody.velocity = new Vector3(0, _jumpForce, 0);
+            _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+            _rigidbody.AddForce(Vector3.forward * _speedForce, ForceMode.Force);
+            isGround = false;
+            scoreText.IncrementScore();
+        }
     }
     void RightOrLeftJump()
     {
-        if (Input.GetKeyDown(KeyCode.A) && isGround)
+        //if (Input.GetKeyDown(KeyCode.A) && isGround)
+        //{
+        //    _rigidbody.velocity = new Vector3(-5, 0, 0);
+        //    _rigidbody.AddForce(Vector3.up * 5, ForceMode.Impulse);
+        //    _rigidbody.AddForce(Vector3.left * 3, ForceMode.Impulse);
+        //}
+        //if (Input.GetKeyDown(KeyCode.D) && isGround)
+        //{
+        //    _rigidbody.velocity = new Vector3(5, 0, 0);
+        //    _rigidbody.AddForce(Vector3.up * 5, ForceMode.Impulse);
+        //    _rigidbody.AddForce(Vector3.right * 3, ForceMode.Impulse);
+        //}
+
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            _rigidbody.velocity = new Vector3(-5, 0, 0);
-            _rigidbody.AddForce(Vector3.up * 5, ForceMode.Impulse);
-            _rigidbody.AddForce(Vector3.left * 3, ForceMode.Impulse);
+            startTouchPosition = Input.GetTouch(0).position;
         }
-        if (Input.GetKeyDown(KeyCode.D) && isGround)
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
-            _rigidbody.velocity = new Vector3(5, 0, 0);
-            _rigidbody.AddForce(Vector3.up * 5, ForceMode.Impulse);
-            _rigidbody.AddForce(Vector3.right * 3, ForceMode.Impulse);
+            endTouchPosition = Input.GetTouch(0).position;
+            if (endTouchPosition.x > startTouchPosition.x && isGround)
+            {
+                _rigidbody.velocity = new Vector3(5, 0, 0);
+                _rigidbody.AddForce(Vector3.up * 5, ForceMode.Impulse);
+                _rigidbody.AddForce(Vector3.right * 3, ForceMode.Impulse);
+            }
+            if (endTouchPosition.x < startTouchPosition.x)
+            {
+                _rigidbody.velocity = new Vector3(-5, 0, 0);
+                _rigidbody.AddForce(Vector3.up * 5, ForceMode.Impulse);
+                _rigidbody.AddForce(Vector3.left * 3, ForceMode.Impulse);
+            }
         }
-
-        //if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-        //{
-        //    startTouchPosition = Input.GetTouch(0).position;
-        //}
-        //if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
-        //{
-        //    endTouchPosition = Input.GetTouch(0).position;
-        //    if(endTouchPosition.x > startTouchPosition.x && isGround)
-        //    {
-        //        _rigidbody.velocity = new Vector3(5, 0, 0);
-        //        _rigidbody.AddForce(Vector3.up * 5, ForceMode.Impulse);
-        //        _rigidbody.AddForce(Vector3.right * 3, ForceMode.Impulse);
-        //    }
-        //    if (endTouchPosition.x < startTouchPosition.x)
-        //    {
-        //        _rigidbody.velocity = new Vector3(-5, 0, 0);
-        //        _rigidbody.AddForce(Vector3.up * 5, ForceMode.Impulse);
-        //        _rigidbody.AddForce(Vector3.left * 3, ForceMode.Impulse);
-        //    }
-        //}
-
-
-        //Touch touch = Input.GetTouch(0);
-        //Vector3 delta = Input.GetTouch(0).deltaPosition;
-        //if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
-        //{
-        //    if (delta.x < 0 && touch.phase == TouchPhase.Moved && isGround)
-        //    {
-        //        _countSwipe++;
-
-        //    }
-        //    if (delta.x > 0 && touch.phase == TouchPhase.Moved && isGround)
-        //    {
-        //        _countSwipe--;
-
-        //    }
-        //}
-
     }
 }
