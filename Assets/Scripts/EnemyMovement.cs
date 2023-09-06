@@ -6,8 +6,9 @@ using UnityEngine.UIElements;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private bool isGround;
-    [SerializeField] float _speedForce;
     private Rigidbody _rigidbody;
+    float _forceUp = 500f;
+    float _forceForward = 20f;
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -17,10 +18,9 @@ public class EnemyMovement : MonoBehaviour
     {
         if (isGround)
         {
-            _rigidbody.AddForce(Vector3.up * 3, ForceMode.Impulse);
-            _rigidbody.AddForce(Vector3.forward * -10, ForceMode.Force);
+            _rigidbody.AddForce(Vector3.up * Time.deltaTime * _forceUp, ForceMode.Impulse);
+            _rigidbody.AddForce(Vector3.forward * Time.deltaTime * -_forceForward, ForceMode.Impulse);
         }
-
     }
 
     private void OnCollisionStay(Collision collision)
