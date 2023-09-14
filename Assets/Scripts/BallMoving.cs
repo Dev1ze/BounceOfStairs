@@ -69,11 +69,11 @@ public class BallMoving : MonoBehaviour
         //    _rigidbody.AddForce(Vector3.right * 3, ForceMode.Impulse);
         //}
 
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && isGround)
         {
             startTouchPosition = Input.GetTouch(0).position;
         }
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && isGround)
         {
             endTouchPosition = Input.GetTouch(0).position;
             if (endTouchPosition.x > startTouchPosition.x && isGround)
