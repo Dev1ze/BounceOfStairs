@@ -12,6 +12,11 @@ public class ChankPlacer : MonoBehaviour
     [SerializeField] public GameObject ChankPrefab;
     [SerializeField] public GameObject[] Enemy;
     int i;
+
+    private void Awake()
+    {
+        Application.targetFrameRate = 60;
+    }
     void Start()
     {
         SpawnedChanks.Add(FirstChank);
