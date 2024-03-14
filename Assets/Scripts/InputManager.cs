@@ -5,27 +5,24 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    public static event Action<DirectionMovement> OnPlayerMovement;
-    public enum DirectionMovement
-    {
-        Forward,
-        Left,
-        Right
-    }
+    public static event Action<IMove> OnPlayerMovement;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            OnPlayerMovement?.Invoke(DirectionMovement.Forward);
-        }
         if (Input.GetKeyDown(KeyCode.A))
         {
-            OnPlayerMovement?.Invoke(DirectionMovement.Left);
+            IMove somethingMove = new MoveLeft();
+            OnPlayerMovement?.Invoke(somethingMove);
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            OnPlayerMovement?.Invoke(DirectionMovement.Right);
+            IMove somethingMove = new MoveRight();
+            OnPlayerMovement?.Invoke(somethingMove);
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            IMove somethingMove = new MoveForward();
+            OnPlayerMovement?.Invoke(somethingMove);
         }
     }
 

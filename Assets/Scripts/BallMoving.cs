@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
-using static InputManager;
 
 public class BallMoving : MonoBehaviour
 {
     [SerializeField] private bool isGround;
     public Transform PlayerTarget;
     public Transform Player;
+    Score scoreText;
     public float jumpHeight = 0.875f;
     public float stepLength = 1.0725f;
     [SerializeField] public bool startMoving = false;
     private Rigidbody _rigidbody;
     float progress;
-    private List<DirectionMovement> movementQueue = new List<DirectionMovement>();
+    private List<IMove> movementQueue = new List<IMove>();
     private bool isJumping = false;
     void Start()
     {
@@ -33,18 +33,18 @@ public class BallMoving : MonoBehaviour
         PlayerTarget.transform.position = new Vector3(0, transform.position.y,transform.position.z);
     }
 
-    void CreateQueueMovement(DirectionMovement directionMovement)
+    void CreateQueueMovement(IMove somethingMove)
     {
-        movementQueue.Add(directionMovement);
+        movementQueue.Add(somethingMove);
         if (!isJumping && isGround)
         {
             isJumping = true;
             _rigidbody.useGravity = false;
-            StartCoroutine(Movement(directionMovement));
+            StartCoroutine(Movement());
         }
     }
 
-    public IEnumerator Movement(DirectionMovement directionMovement)
+    public IEnumerator Movement()
     {
         while(movementQueue.Count > 0)
         {
@@ -52,38 +52,16 @@ public class BallMoving : MonoBehaviour
             Vector3 P0 = new Vector3();
             Vector3 P1 = new Vector3();
             Vector3 P2 = new Vector3();
-            Vector3 targetFrwrd = new Vector3();
+            Vector3 P3 = new Vector3(); //4 точки для кривой Бизье
 
-            if (movementQueue[0] == DirectionMovement.Forward)
-            {
-                P0 = transform.position;
-                P1 = new Vector3(transform.position.x, transform.position.y + 1.729f, transform.position.z + 0.116f);
-                P2 = new Vector3(transform.position.x, transform.position.y + 1.729f, transform.position.z + 0.6f);
-                targetFrwrd = new Vector3(transform.position.x, transform.position.y + 0.875f, transform.position.z + 1.0725f);
-            }
-
-            if (movementQueue[0] == DirectionMovement.Right)
-            {
-                P0 = transform.position;
-                P1 = new Vector3(transform.position.x + 0.116f, transform.position.y + 1.729f, transform.position.z);
-                P2 = new Vector3(transform.position.x + 0.6f, transform.position.y + 1.729f, transform.position.z);
-                targetFrwrd = new Vector3(transform.position.x + 1.0725f, transform.position.y, transform.position.z);
-            }
-
-            if (movementQueue[0] == DirectionMovement.Left)
-            {
-                P0 = transform.position;
-                P1 = new Vector3(transform.position.x - 0.116f, transform.position.y + 1.729f, transform.position.z);
-                P2 = new Vector3(transform.position.x - 0.6f, transform.position.y + 1.729f, transform.position.z);
-                targetFrwrd = new Vector3(transform.position.x - 1.0725f, transform.position.y, transform.position.z);
-            }
+            movementQueue[0].GetMovementPoints(Player, ref P0, ref P1, ref P2, ref P3);
 
             while (progress <= 1)
             {
                 progress += Time.deltaTime * 6f;
                 Vector3 P01 = Vector3.Lerp(P0, P1, progress);
                 Vector3 P12 = Vector3.Lerp(P1, P2, progress);
-                Vector3 P23 = Vector3.Lerp(P2, targetFrwrd, progress);
+                Vector3 P23 = Vector3.Lerp(P2, P3, progress);
 
                 Vector3 P012 = Vector3.Lerp(P01, P12, progress);
                 Vector3 P123 = Vector3.Lerp(P12, P23, progress);
