@@ -30,6 +30,7 @@ public class BallMoving : MonoBehaviour
 
     void Update()
     {
+        //scoreText.IncrementScore();
         PlayerTarget.transform.position = new Vector3(0, transform.position.y,transform.position.z);
     }
 
@@ -114,7 +115,12 @@ public class BallMoving : MonoBehaviour
         //}
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Ground") isGround = true;
+        if (collision.gameObject.tag == "Ground")
+        {
+            isGround = true;
+            scoreText.IncrementScore(transform.position.y);
+        }
+            
     }
 
     private void OnCollisionExit(Collision collision)
