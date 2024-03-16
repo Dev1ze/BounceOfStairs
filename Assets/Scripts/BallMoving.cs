@@ -16,6 +16,7 @@ public class BallMoving : MonoBehaviour
     float progress;
     private List<IMove> movementQueue = new List<IMove>();
     private bool isJumping = false;
+
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();

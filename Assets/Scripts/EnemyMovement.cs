@@ -24,23 +24,22 @@ public class EnemyMovement : MonoBehaviour
             _rigidbody.useGravity = false;
             StartCoroutine(Movement());
         }
-        Debug.Log(countTouchs);
     }
 
     public IEnumerator Movement()
     {
         while (true)
         {
+            float speed = 0;
             progress = 0f;
             if (countTouchs < 2) countTouchs++;
-            P0 = transform.position;
-            P1 = new Vector3(transform.position.x, transform.position.y + 1.729f, transform.position.z - 0.116f);
-            P2 = new Vector3(transform.position.x, transform.position.y + 1.729f, transform.position.z - 0.6f);
-            P3 = new Vector3(transform.position.x, transform.position.y - 0.875f, transform.position.z - 1.067f);
+
+            IMoveEnemy moveEnemy = GetComponent<IMoveEnemy>();
+            moveEnemy.GetMovementPoint(ref P0, ref P1, ref P2, ref P3, ref speed);
 
             while (progress < 1)
             {
-                progress += Time.deltaTime;
+                progress += Time.deltaTime * speed;
 
                 targetRotation = Mathf.Lerp(180f, 0f, progress);
                 transform.rotation = Quaternion.Euler(targetRotation, 0, 0);
