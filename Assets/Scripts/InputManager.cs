@@ -2,29 +2,38 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class InputManager : MonoBehaviour
 {
+    Vector3 startTouchPosition;
+    Vector3 endTouchPosition;
     public static event Action<IMove> OnPlayerMovement;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            IMove somethingMove = new MoveLeft();
-            OnPlayerMovement?.Invoke(somethingMove);
+            startTouchPosition = Input.GetTouch(0).position;
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
-            IMove somethingMove = new MoveRight();
-            OnPlayerMovement?.Invoke(somethingMove);
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            IMove somethingMove = new MoveForward();
-            OnPlayerMovement?.Invoke(somethingMove);
+            endTouchPosition = Input.GetTouch(0).position;
+            if (endTouchPosition.x > startTouchPosition.x)
+            {
+                IMove somethingMove = new MoveRight();
+                OnPlayerMovement?.Invoke(somethingMove);
+            }
+            if (endTouchPosition.x < startTouchPosition.x)
+            {
+                IMove somethingMove = new MoveLeft();
+                OnPlayerMovement?.Invoke(somethingMove);
+            }
+            if(endTouchPosition.x == startTouchPosition.x)
+            {
+                IMove somethingMove = new MoveForward();
+                OnPlayerMovement?.Invoke(somethingMove);
+            }
         }
     }
-
-    
 }
