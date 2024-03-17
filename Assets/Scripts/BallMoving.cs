@@ -32,6 +32,7 @@ public class BallMoving : MonoBehaviour
     void Update()
     {
         PlayerTarget.transform.position = new Vector3(0, transform.position.y,transform.position.z);
+        if(transform.position.x > 4.25f || transform.position.x < -4.25f) _rigidbody.useGravity = true;
     }
 
     void CreateQueueMovement(IMove somethingMove)
@@ -68,51 +69,13 @@ public class BallMoving : MonoBehaviour
         isJumping = false;
     }
 
-
-
-        //if (Input.GetKeyDown(KeyCode.A) && !isJumping)
-        //{
-        //    _rigidbody.useGravity = true;
-        //    _rigidbody.velocity = new Vector3(-5, 0, 0);
-        //    _rigidbody.AddForce(Vector3.up * 5, ForceMode.Impulse);
-        //    _rigidbody.AddForce(Vector3.left * 3, ForceMode.Impulse);
-        //}
-        //if (Input.GetKeyDown(KeyCode.D) && !isJumping)
-        //{
-        //    _rigidbody.useGravity = true;
-        //    _rigidbody.velocity = new Vector3(5, 0, 0);
-        //    _rigidbody.AddForce(Vector3.up * 5, ForceMode.Impulse);
-        //    _rigidbody.AddForce(Vector3.right * 3, ForceMode.Impulse);
-        //}
-
-        //if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && isGround)
-        //{
-        //    startTouchPosition = Input.GetTouch(0).position;
-        //}
-        //if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && isGround)
-        //{
-        //    endTouchPosition = Input.GetTouch(0).position;
-        //    if (endTouchPosition.x > startTouchPosition.x && isGround)
-        //    {
-        //        _rigidbody.velocity = new Vector3(5, 0, 0);
-        //        _rigidbody.AddForce(Vector3.up * 5, ForceMode.Impulse);
-        //        _rigidbody.AddForce(Vector3.right * 3, ForceMode.Impulse);
-        //    }
-        //    if (endTouchPosition.x < startTouchPosition.x)
-        //    {
-        //        _rigidbody.velocity = new Vector3(-5, 0, 0);
-        //        _rigidbody.AddForce(Vector3.up * 5, ForceMode.Impulse);
-        //        _rigidbody.AddForce(Vector3.left * 3, ForceMode.Impulse);
-        //    }
-        //}
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
             isGround = true;
             scoreText.IncrementScore(transform.position.y);
-        }
-            
+        }    
     }
 
     private void OnCollisionExit(Collision collision)
