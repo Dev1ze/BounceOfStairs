@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3092264119270064675}
   - component: {fileID: 3092264119270064679}
   - component: {fileID: 3092264119270064674}
+  - component: {fileID: 400582860879224099}
   m_Layer: 0
   m_Name: EnemyYellow
   m_TagString: Enemy
@@ -127,3 +128,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGround: 0
+--- !u!114 &400582860879224099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3092264119270064680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8027b864d473d684480c66694ff03408, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
