@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2116432681388320309}
   - component: {fileID: 868627065454514170}
   - component: {fileID: 680247359780391845}
+  - component: {fileID: -4445193936749315060}
   - component: {fileID: -6029514023035928003}
   m_Layer: 0
   m_Name: EnemyOrange
@@ -111,7 +112,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGround: 0
-  _speedForce: 0
+--- !u!114 &-4445193936749315060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4366439482284175884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fcc71272fbe1b94f85d2db1981af5bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &-6029514023035928003
 Rigidbody:
   m_ObjectHideFlags: 0

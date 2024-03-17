@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3092264119270064675}
   - component: {fileID: 3092264119270064679}
   - component: {fileID: 3092264119270064674}
+  - component: {fileID: 3765718046524129610}
   m_Layer: 0
   m_Name: EnemyRed
   m_TagString: Enemy
@@ -94,10 +95,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.7205073
-  m_Height: 1.4410145
+  m_Radius: 0.5029683
+  m_Height: 1.0059496
   m_Direction: 1
-  m_Center: {x: 0.01579358, y: -0.008371794, z: -0.037253086}
+  m_Center: {x: -0.0015322062, y: 0.0012533482, z: -0.0026016969}
 --- !u!54 &3092264119270064679
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -127,4 +128,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGround: 0
-  _speedForce: 0
+--- !u!114 &3765718046524129610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3092264119270064680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ee6e7ce86d911f4fa236ddf5e687dac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
