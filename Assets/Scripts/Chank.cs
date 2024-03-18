@@ -10,6 +10,7 @@ public class Chank : MonoBehaviour
     [SerializeField] public List<Transform> SecondSpawnLine = new List<Transform>();
     [SerializeField] public List<Transform> ThirdSpawnLine = new List<Transform>();
     [SerializeField] public List<GameObject> MainSpawn = new List<GameObject>();
+    public List<GameObject> EnemyOfChank = new List<GameObject>();
 
     void Start()
     {

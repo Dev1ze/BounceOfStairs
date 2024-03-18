@@ -39,11 +39,13 @@ public class ChankPlacer : MonoBehaviour
     {
         while (i < SpawnedChanks[SpawnedChanks.Count - 1].GetComponent<Chank>().MainSpawn.Count)
         {
-            Component[] array = SpawnedChanks[SpawnedChanks.Count - 1].GetComponent<Chank>().MainSpawn[i].GetComponentsInChildren(typeof(Transform));
-            Component[] newArray = RemoveFirstItemArray(ref array);
+            Component[] array = SpawnedChanks[SpawnedChanks.Count - 1].GetComponent<Chank>().MainSpawn[i].GetComponentsInChildren(typeof(Transform)); //ѕолучаем первый р€д точек-спавнов...2-ой...3-ий р€д
+            //Component[] newArray = RemoveFirstItemArray(ref array);
             GameObject newEnemy = Instantiate(Enemy[Random.Range(0, Enemy.Length)]);
             SpawnedEnemy.Add(newEnemy);
-            newEnemy.transform.position = newArray[Random.Range(0, newArray.Length - 1)].GetComponent<Transform>().position;
+            newEnemy.transform.position = array[Random.Range(0, array.Length - 1)].GetComponent<Transform>().position;
+            SpawnedChanks[SpawnedChanks.Count - 1].GetComponent<Chank>().EnemyOfChank.Add(newEnemy);
+
             i++;
         }
     }
@@ -52,13 +54,12 @@ public class ChankPlacer : MonoBehaviour
     {
         if (SpawnedChanks.Count > 3)
         {
+            for(int i = 0; i < SpawnedChanks[0].GetComponent<Chank>().EnemyOfChank.Count; i++)
+            {
+                Destroy(SpawnedChanks[0].GetComponent<Chank>().EnemyOfChank[i]);
+            }
             Destroy(SpawnedChanks[0].gameObject);
             SpawnedChanks.RemoveAt(0);
-            for (int i = 0; i < 3; i++)
-            {
-                Destroy(SpawnedEnemy[i].gameObject);
-                SpawnedEnemy.RemoveAt(i);
-            }
         }
     }
 
@@ -71,11 +72,11 @@ public class ChankPlacer : MonoBehaviour
         SpawnEnemy();
     }
 
-    Component[] RemoveFirstItemArray(ref Component[] array)
-    {
-        Component[] newArray = new Component[array.Length - 1];
-        for(int i = 1; i < array.Length; i++)
-            newArray[i - 1] = array[i];
-        return newArray;
-    }
+    //Component[] RemoveFirstItemArray(ref Component[] array)
+    //{
+    //    Component[] newArray = new Component[array.Length - 1];
+    //    for(int i = 1; i < array.Length; i++)
+    //        newArray[i - 1] = array[i];
+    //    return newArray;
+    //}
 }
