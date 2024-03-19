@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class ChankPlacer : MonoBehaviour
@@ -21,6 +22,7 @@ public class ChankPlacer : MonoBehaviour
     {
         SpawnedChanks.Add(FirstChank);
         SpawnEnemy();
+        InfinitySpawnEnemy();
     }
 
     void Update()
@@ -31,7 +33,6 @@ public class ChankPlacer : MonoBehaviour
             {
                 SpawnChank();
                 DeleteChank();
-                SpawnEnemy();
             }
         }   
     }
@@ -39,14 +40,28 @@ public class ChankPlacer : MonoBehaviour
     {
         while (i < SpawnedChanks[SpawnedChanks.Count - 1].GetComponent<Chank>().MainSpawn.Count)
         {
-            Component[] array = SpawnedChanks[SpawnedChanks.Count - 1].GetComponent<Chank>().MainSpawn[i].GetComponentsInChildren(typeof(Transform)); //ѕолучаем первый р€д точек-спавнов...2-ой...3-ий р€д
+            Component[] array = SpawnedChanks[SpawnedChanks.Count - 1].GetComponent<Chank>().MainSpawn[i].GetComponentsInChildren(typeof(Transform)); //ѕолучаем первый р€д точек-спавнов...2-ой...3-ий р€д   
             //Component[] newArray = RemoveFirstItemArray(ref array);
             GameObject newEnemy = Instantiate(Enemy[Random.Range(0, Enemy.Length)]);
             SpawnedEnemy.Add(newEnemy);
             newEnemy.transform.position = array[Random.Range(0, array.Length - 1)].GetComponent<Transform>().position;
             SpawnedChanks[SpawnedChanks.Count - 1].GetComponent<Chank>().EnemyOfChank.Add(newEnemy);
-
             i++;
+        }
+    }
+
+    async void InfinitySpawnEnemy()
+    {
+        while (Player != null)
+        {
+            if (SpawnedChanks[SpawnedChanks.Count - 1] != null)
+            {
+                Component[] array = SpawnedChanks[SpawnedChanks.Count - 1].GetComponent<Chank>().MainSpawn[2].GetComponentsInChildren(typeof(Transform));
+                GameObject InfinityEnemy = Instantiate(Enemy[Random.Range(0, Enemy.Length)]);
+                InfinityEnemy.transform.position = array[Random.Range(0, array.Length - 1)].GetComponent<Transform>().position;
+                await Task.Delay(5000);
+            }
+            else await Task.Delay(5000);
         }
     }
 

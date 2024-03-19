@@ -150,7 +150,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3908026728397575079}
   m_LocalRotation: {x: -0.36316997, y: 0, z: 0, w: 0.93172294}
-  m_LocalPosition: {x: 0.26, y: 2.56, z: 9.19}
+  m_LocalPosition: {x: 0.26, y: 5.4, z: 9.19}
   m_LocalScale: {x: 18.8, y: 1.12, z: 24.7}
   m_Children: []
   m_Father: {fileID: 7287359573790716031}
@@ -4305,6 +4305,7 @@ MonoBehaviour:
   - {fileID: 7287359575482530666}
   - {fileID: 8064087784543124875}
   - {fileID: 1416369689592777410}
+  EnemyOfChank: []
 --- !u!1 &7287359574465090430
 GameObject:
   m_ObjectHideFlags: 0
