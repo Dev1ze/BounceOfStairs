@@ -7,6 +7,7 @@ public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private bool isGround;
     float progress;
+    public GameObject Player;
     float targetRotation;
     private Rigidbody _rigidbody;
     int countTouchs = 0;
@@ -15,10 +16,12 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
     {
+        RemoveEnemy();
         if (countTouchs == 1)
         {
             _rigidbody.useGravity = false;
@@ -26,6 +29,13 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    private void RemoveEnemy()
+    {
+        if(transform.position.z < (Player.transform.position.z - 4.5f))
+        {
+            Destroy(gameObject);
+        }
+    }
     public IEnumerator Movement()
     {
         while (true)
