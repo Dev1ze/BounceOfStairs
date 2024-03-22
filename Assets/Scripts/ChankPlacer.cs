@@ -40,12 +40,11 @@ public class ChankPlacer : MonoBehaviour
     {
         while (i < SpawnedChanks[SpawnedChanks.Count - 1].GetComponent<Chank>().MainSpawn.Count)
         {
-            Component[] array = SpawnedChanks[SpawnedChanks.Count - 1].GetComponent<Chank>().MainSpawn[i].GetComponentsInChildren(typeof(Transform)); //ѕолучаем первый р€д точек-спавнов...2-ой...3-ий р€д   
+            Component[] SpawnsLine = SpawnedChanks[SpawnedChanks.Count - 1].GetComponent<Chank>().MainSpawn[i].GetComponentsInChildren(typeof(Transform)); //ѕолучаем первый р€д точек-спавнов...2-ой...3-ий р€д   
             //Component[] newArray = RemoveFirstItemArray(ref array);
             GameObject newEnemy = Instantiate(Enemy[Random.Range(0, Enemy.Length)]);
             SpawnedEnemy.Add(newEnemy);
-            newEnemy.transform.position = array[Random.Range(0, array.Length - 1)].GetComponent<Transform>().position;
-            SpawnedChanks[SpawnedChanks.Count - 1].GetComponent<Chank>().EnemyOfChank.Add(newEnemy);
+            newEnemy.transform.position = SpawnsLine[Random.Range(0, SpawnsLine.Length - 1)].GetComponent<Transform>().position;
             i++;
         }
     }
@@ -69,10 +68,6 @@ public class ChankPlacer : MonoBehaviour
     {
         if (SpawnedChanks.Count > 3)
         {
-            for(int i = 0; i < SpawnedChanks[0].GetComponent<Chank>().EnemyOfChank.Count; i++)
-            {
-                Destroy(SpawnedChanks[0].GetComponent<Chank>().EnemyOfChank[i]);
-            }
             Destroy(SpawnedChanks[0].gameObject);
             SpawnedChanks.RemoveAt(0);
         }
