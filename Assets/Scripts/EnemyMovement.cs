@@ -31,11 +31,12 @@ public class EnemyMovement : MonoBehaviour
 
     private void RemoveEnemy()
     {
-        if(transform.position.z < (Player.transform.position.z - 4.5f))
+        if (Player != null)
         {
-            Destroy(gameObject);
+            if (transform.position.z < (Player.transform.position.z - 5f)) Destroy(gameObject);
         }
     }
+
     public IEnumerator Movement()
     {
         while (true)
