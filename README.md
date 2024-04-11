@@ -22,11 +22,11 @@
 
 <br/>  
 
-![Game gif](https://github.com/Dev1ze/BounceOfStairs/assets/51072932/062c9eaf-db7f-47cb-a0d8-b6ca20faea89)
 
 ## My Skill Set  
 <table><tr><td valign="top" width="33%">
 
+![Game gif](https://github.com/Dev1ze/BounceOfStairs/assets/51072932/af59ffae-0242-48af-ae9e-02343745834c)
 
 
 ### Frontend  
