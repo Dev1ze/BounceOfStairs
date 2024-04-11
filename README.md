@@ -19,7 +19,7 @@
 
 - ⚡ Fun fact: I use tabs over spaces  
   
-
+![Gif Game](https://github.com/Dev1ze/BounceOfStairs/assets/51072932/d468cd53-b001-4f1d-b993-c953734d987f)
 <br/>  
 
 
@@ -27,7 +27,7 @@
 ## My Skill Set  
 <table><tr><td valign="top" width="33%">
 
-![Gif Game](https://github.com/Dev1ze/BounceOfStairs/assets/51072932/d468cd53-b001-4f1d-b993-c953734d987f)
+
 
 
 ### Frontend  
