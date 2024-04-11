@@ -1,7 +1,7 @@
 <div align="center">
 <img src="https://rishavanand.github.io/static/images/greetings.gif" align="center" style="width: 100%" />
 </div>  
-![Gif Game](https://github.com/Dev1ze/BounceOfStairs/assets/51072932/1cd959ae-0c44-48bd-8d39-fe61e33fdb0f)
+
 
 
 
@@ -22,7 +22,7 @@
 
 <br/>  
 
-
+![Gif Game](https://github.com/Dev1ze/BounceOfStairs/assets/51072932/1cd959ae-0c44-48bd-8d39-fe61e33fdb0f)
 ## My Skill Set  
 <table><tr><td valign="top" width="33%">
 
