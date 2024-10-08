@@ -154,7 +154,7 @@ public class ChankPlacer : MonoBehaviour
 <a href="https://github.com/Dev1ze" target="_blank">
 <img src=https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/github.svg alt=github style="margin-bottom: 5px;" width="32"/>
 </a>
-<a href="https://www.youtube.com/@devize9223" target="_blank">
+<a href="https://www.youtube.com/@_devize_" target="_blank">
 <img src=https://github.com/Dev1ze/BounceOfStairs/assets/51072932/55f6ea26-a1a2-48e7-b816-bbad461837f8 alt=youtube style="margin-bottom: 5px;" width="32"/>
 </a>  
 <a href="https://vk.com/artemander" target="_blank">
